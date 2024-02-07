@@ -41,7 +41,7 @@ public class KafkaConfig {
 
     @Bean
     //лимит по времени в 7 дней
-    //хранит в себе данные с датчиков по температуре
+    //хранит в себе данные с датчиков по вольтажу
     public NewTopic voltageTopic() {
         return TopicBuilder.name("data-voltage")
                 .partitions(5)
@@ -55,7 +55,7 @@ public class KafkaConfig {
 
     @Bean
     //лимит по времени в 7 дней
-    //хранит в себе данные с датчиков по температуре
+    //хранит в себе данные с датчиков по мощности
     public NewTopic powerTopic() {
         return TopicBuilder.name("data-power")
                 .partitions(5)
@@ -70,7 +70,7 @@ public class KafkaConfig {
     @Bean
     //Тот, кто будет отправлять сообщения в Kafka
     public SenderOptions<String, Object> senderOptions() {
-        Map<String, Object> props = new HashMap<>(3);
+        Map<String, Object> props = new HashMap<>();
         props.put(
                 ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
                 servers
